@@ -81,7 +81,7 @@ class TabelDaftarHp extends Component {
 
     return (
       <>
-        <h1 className="text-center">Data Siswa Kelas 1</h1>
+        <h1 className="text-center">Daftar HP</h1>
         <div className="container mt-3">
           <NavLink to="/tmbdaftarhp" className="btn btn-primary btn-sm">
             Tambah Daftar
