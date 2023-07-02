@@ -1,0 +1,73 @@
+GET http://localhost:8000/daftar_hp/
+
+###
+GET http://localhost:8000/daftar_hp/12we
+
+###
+GET http://localhost:8000/data_hp/12345
+
+###
+PUT http://localhost:8000/data_hp/12345
+Content-Type: application/json
+
+{
+    "kode_hp":"12345",
+    "merek": "terlama"
+}
+
+###
+PUT   http://localhost:8000/daftar_hp/12we
+Content-Type: application/json
+
+{
+    "id_hp": "12we",
+    "nama": "dia",
+    "tahun": "2023",
+    "jenis": "f"
+}
+
+###
+POST  http://localhost:8000/data_hp
+Content-Type: application/json
+
+{
+    "kode_hp": "12we",
+    "merek": "aku"
+}
+
+###
+PUT http://localhost:8000/data_hp/12345
+Content-Type: application/json
+
+{
+    "kode_hp": "12we",
+    "merek": "baru"
+}
+
+###
+PUT  http://localhost:8000/daftar_hp/12qq
+Content-Type: application/json
+
+{
+    "id_hp": "12qq",
+    "nama": "dia",
+    "tahun": "2023",
+    "jenis": "f"
+}
+
+###
+GET  http://localhost:8000/nilai_hp/12122
+
+###
+PUT  http://localhost:8000/nilai_hp/12122
+Content-Type: application/json
+
+{
+    "id_hp": "12122",
+    "harga": "1000000",
+    "nilai_hp": null,
+    "kode_hp": "12345",
+    "kelas_hp": "g"
+}
+
+
