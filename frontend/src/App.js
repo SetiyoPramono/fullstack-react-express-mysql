@@ -22,6 +22,8 @@ import NilaiHp from './page/admin/NilaiHp'
 
 import './App.css'
 import TmbDaftarHp from './page/admin/TmbDaftarHp'
+import TmbDataHp from './page/admin/TmbDataHp'
+import TmbNilaiHp from './page/admin/TmbNilaiHp'
 
 
 
@@ -34,6 +36,8 @@ const App = () => {
     <Switch>
       <Route exact  path="/" component={Home} />
       <Route exact  path="/tmbdaftarhp" component={TmbDaftarHp} />
+      <Route exact  path="/tmbdatahp" component={TmbDataHp} />
+      <Route exact  path="/tmbnilaihp" component={TmbNilaiHp} />
       <Route exact  path="/products" component={Products} />
       <Route exact  path="/adminkonter" component={AdminKonter} />
       <Route exact  path="/daftarhp" component={DaftarHp} />

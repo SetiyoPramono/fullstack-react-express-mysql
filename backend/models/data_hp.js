@@ -77,7 +77,7 @@ module.exports = {
             result(null,res);
         });
     },
-    getNilaiHpByKodeHp:(nim,result) =>{
+    getNilaiHpByKodeHp:(id_hp,result) =>{
         try {
             sql.query(`SELECT data_hp.kode_hp, data_hp.merek,nilai_hp.harga,nilai_hp.kode_hp,nilai_hp.kelas_hp 
             FROM daftar_hp,data_hp,nilai_hp

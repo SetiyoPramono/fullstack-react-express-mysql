@@ -56,7 +56,7 @@ module.exports = {
                 message: "Content can not be  empty"
             });
         }
-        DataHp.update(req.params.kodemapel,req.body,(err,data)=>{
+        DataHp.update(req.params.kode_hp,req.body,(err,data)=>{
             if (err) {
                 if (err.kind === 'not_found') {
                     res.status(404).send({

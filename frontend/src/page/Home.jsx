@@ -1,10 +1,7 @@
-import React,{useEffect,useRef} from 'react'
-import { useHistory } from 'react-router-dom'
 import '../App.css'
-import AllProducts from '../component/AllProducts'
 // import { DataContext } from '../context/DataContext'
-import axios from 'axios'
 import Navbar from '../component/Navbar'
+import DataSemuaHp from '../component/admin/DataSemuaHp'
 
 const Home = () => {
 
@@ -16,9 +13,9 @@ const Home = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 col-12 mb-3 mx-auto">
-                        <h1>Welcome to <span>GreenX World</span> </h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, quos.</p>
-                        <button className="btn btn-outline-success">Read More</button>
+                    <h1>Semalamat Datang di <span>Konter HP Termurah</span> </h1>
+                    <p>Kami melayani semua jenis hp dan semua kebutuhan hp anda untuk kedepannya</p>
+                        <button className="btn btn-outline-success">Selengkapnya</button>
 
                     </div>
                     <div className="col-md-6 col-12 mb-3 mx-auto">
@@ -27,18 +24,18 @@ const Home = () => {
                         </div>
                 </div>
             </div>
-        </div>
-            <AllProducts/>
-            <div className="desc">
-                <div className="container-fluid">
+        </div><br/><br/>
+            <DataSemuaHp/>
+            <div className="desc mt-1">
+                <div className="container-fluid"> 
                     <div className="row">
                 <div className="col-md-6 col-12 mx-auto mb-3 ">
                     <img src="../img/envv.svg" alt="ok" className="img-fluid side-img" />
                 </div>
                     <div className=" col-md-6 col-12 mx-auto mb-3 d-flex justify-content-center align-items-center flex-column">
-                    <h1>Welcome to <span>GreenX World</span> </h1>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat cupiditate aspernatur, aperiam consequatur fugiat nisi! At labore corrupti, non vitae libero obcaecati, necessitatibus, odio facilis aliquid odit nulla porro itaque.</p>
-                        <button className="btn btn-outline-success">Read More</button>
+                    <h1>Semalamat Datang di <span>Konter HP Termurah</span> </h1>
+                    <p>Kami melayani semua jenis hp dan semua kebutuhan hp anda untuk kedepannya</p>
+                        <button className="btn btn-outline-success">Selengkapnya</button>
                     </div>
                 </div>
                 </div>

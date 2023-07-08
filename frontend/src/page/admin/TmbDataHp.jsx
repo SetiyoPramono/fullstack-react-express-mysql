@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Layout from '../../component/admin/Layout'
 import Navbar from '../../component/Navbar'
-import TambahDaftarHp from '../../component/admin/TambahDaftarHp'
+import TambahDataHp from '../../component/admin/TambahDataHp'
 
 
-const TmbDaftarHp = () => {
+const TmbDataHp = () => {
     const timeout = useRef(null)
     const his= useHistory()
     const checkAuth=()=>{
@@ -40,11 +40,11 @@ const TmbDaftarHp = () => {
         <>
         <Navbar/>
         <Layout>
-              <TambahDaftarHp />
+              <TambahDataHp />
         </Layout>
             
         </>
     )
 }
 
-export default TmbDaftarHp;
+export default TmbDataHp;

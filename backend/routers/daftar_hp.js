@@ -12,7 +12,7 @@ routeDaftarHp.route('/daftar_hp/:id_hp')
     .get(controllerDaftarHp.getDaftarHpByIdHp)
     
 routeDaftarHp.route('/daftar_hp/nilai/:id_hp')
-    .get(controllerDaftarHp.getNilaiByIdHp)
+    .get(controllerDaftarHp.getNilaiHpByIdHp)
 
     
 module.exports = routeDaftarHp

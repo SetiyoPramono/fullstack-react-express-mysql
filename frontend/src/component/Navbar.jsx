@@ -17,7 +17,7 @@ const Navbar = () => {
             <i className="fa fa-bars"></i>
           </label>
           <label className="logo">
-            <NavLink to="/">GreenX</NavLink>
+            <NavLink to="/">Konter HP</NavLink>
           </label>
           <ul>
             <li>
@@ -30,11 +30,11 @@ const Navbar = () => {
             <li>
               <NavLink to="/adminkonter">Admin Konter</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/cart" className="cart-box">
                 Cart <span>{cart.length}</span>{" "}
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/myaccount">Profile </NavLink>
             </li>

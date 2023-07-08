@@ -3,7 +3,7 @@ const sql = require("./db")
 
 module.exports = {
      insert : (nilaiHpBaru,result) => {
-       sql.query("insert into nilai SET ?",nilaiHpBaru,(err,res)=>{
+       sql.query("insert into nilai_hp SET ?",nilaiHpBaru,(err,res)=>{
            if (err) {
                console.log("error",err);
                result(err,null)
@@ -21,7 +21,7 @@ module.exports = {
                 result(null,err);
                 return;
             }
-            result(null,res)
+            result(null,res) 
         })
     },
 
@@ -45,7 +45,7 @@ module.exports = {
     update:(id_hp,nilai_hp,result)=>{
         sql.query(
             "UPDATE nilai_hp SET harga = ?, kode_hp = ?, nilai_hp = ?, kelas_hp = ? WHERE id_hp = ?",
-            [nilai_hp.harga, nilai_hp.kode_hp, nilai_hp.nilai_hp_hp, nilai_hp.kelas_hp, id_hp],
+            [nilai_hp.harga, nilai_hp.kode_hp, nilai_hp.nilai_hp, nilai_hp.kelas_hp, id_hp],
             (err,res) => {
                 if (err) {
                     console.log("error",err);

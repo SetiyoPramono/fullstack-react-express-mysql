@@ -94,8 +94,8 @@ module.exports = {
                }            
         });
     },
-    getNilaiByIdHp : (req,res)=>{
-        DaftarHp.getDaftarHpByIdHp(req.params.id_hp,(err,data)=>{
+    getNilaiHpByIdHp : (req,res)=>{
+        DaftarHp.getNilaiHpByIdHp(req.params.id_hp,(err,data)=>{
             if (err) {
                 if (err.kind === 'not_found') {
                     res.status(404).send({

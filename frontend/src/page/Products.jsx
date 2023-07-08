@@ -4,6 +4,7 @@ import CardProducts from '../component/CardProducts'
 // import { DataContext } from '../context/DataContext'
 import { useHistory } from 'react-router-dom'
 import Navbar from '../component/Navbar'
+import DataSemuaHp from '../component/admin/DataSemuaHp'
 const Products = () => {
     const [getdata, setGetdata] = useState([])
 
@@ -70,7 +71,7 @@ const Products = () => {
     return (
         <>
         <Navbar/>
-         <div className="products">
+         {/* <div className="products">
             <div className="container">
                 <h2 className="text-center font-weight-bold mb-5">Best Products</h2>
               <div className="inp ">
@@ -109,8 +110,9 @@ const Products = () => {
                         
                 </div>
             </div>
-        </div>
+        </div> */}
         
+        <DataSemuaHp />
             
         </>
     )

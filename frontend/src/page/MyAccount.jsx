@@ -66,12 +66,13 @@ const MyAccount = () => {
             <>
             <Navbar/>
             <div className="container p-5">
-            <button className="btn btn-success ml-1 mr-1" disabled>Welcome {userdatast}</button>
+                <h2>Selamat Datang</h2>
+            <button className="btn btn-success ml-1 mr-1" disabled>Mr. {userdatast}</button>
                     <button className="btn btn-warning ml-1 mr-1" onClick={logout}>LogOut</button>
                     <br /><br />
 
-               <h2>You Not Yet Placed Any Order</h2>
-               <button className="btn btn-info" onClick={()=>his.push('/products')}>Continue Shopping</button>
+               {/* <h2>You Not Yet Placed Any Order</h2>
+               <button className="btn btn-info" onClick={()=>his.push('/products')}>Continue Shopping</button> */}
             </div>
 
             </>

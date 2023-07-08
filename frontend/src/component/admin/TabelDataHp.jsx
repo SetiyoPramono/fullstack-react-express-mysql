@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import SemuaHpByIdHp from "./SemuaHpByIdHp";
 import { NavLink } from "react-router-dom";
 
-class TabelDataHp extends Component {
+class TabelNilaiHp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datahp: [],
+      searchId: "",
     };
   }
 
@@ -76,26 +76,57 @@ class TabelDataHp extends Component {
       });
   };
 
+  handleSearchChange = (event) => {
+    this.setState({ searchId: event.target.value });
+  };
+
+  handleSearch = () => {
+    const { searchId } = this.state;
+    if (searchId) {
+      axios
+        .get(`http://localhost:8000/data_hp/${searchId}`)
+        .then((response) => {
+          this.setState({ datahp: [response.data] });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.setState({ datahp: [] });
+        });
+    } else {
+      this.getDataHp();
+    }
+  };
+
   render() {
-    const { datahp, selectedItem } = this.state;
+    const { datahp, selectedItem, searchId } = this.state;
 
     return (
       <>
         <h1 className="text-center">Data HP</h1>
         <div className="container mt-3">
-          <NavLink to="/tmbdaftarhp" className="btn btn-primary btn-sm">
-            Tambah Daftar
+        <NavLink to="/tmbnilaihp" className="btn btn-primary btn-sm">
+            Tambah Nilai
           </NavLink>
-          <SemuaHpByIdHp />
+          <div className="form-group">
+          <label htmlFor="searchId">Search by ID HP:</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Cari berdasarkan ID HP"
+              value={searchId}
+              onChange={this.handleSearchChange}
+            />
+            <button
+              className="btn btn-primary mt-2"
+              onClick={this.handleSearch}
+            >
+              Cari
+            </button>
+          </div>
           <div className="">
             {selectedItem ? (
               <div>
-                <input
-                  type="text"
-                  name="kode_hp"
-                  value={selectedItem.kode_hp}
-                  onChange={this.handleEditChange}
-                />
+                
                 <input
                   type="text"
                   name="merek"
@@ -121,7 +152,6 @@ class TabelDataHp extends Component {
                   <tr>
                     <th>Kode HP</th>
                     <th>Merek</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -155,4 +185,4 @@ class TabelDataHp extends Component {
   }
 }
 
-export default TabelDataHp;
+export default TabelNilaiHp;

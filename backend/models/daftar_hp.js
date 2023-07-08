@@ -76,38 +76,39 @@ module.exports = {
             result(null,res);
         });
     },
-    // getNilaiHpByIdHp:(id_hp,result) =>{
-    //     try {
-    //         sql.query(`SELECT daftar_hp.id_hp,daftar_hp.nama,daftar_hp.tahun,daftar_hp.jenis,data_hp.kode_hp,nilai_hp.harga,nilai_hp.kode_hp,nilai_hp.kelas_hp
-    //         FROM daftar_hp,data_hp,nilai_hp
-    //         WHERE daftar_hp.id_hp=${id_hp} and nilai_hp.id_hp=${id_hp} and nilai_hp.kode_hp=data_hp.kode_hp`,(err,res) =>
-    //         {
-    //             result(null,res)
-    //         }
-    //         );
-    //     } catch (error) {
-    //         result(error,null)
-    //     }
-    // }
-    getNilaiHpByIdHp: (id_hp, result) => {
+    getNilaiHpByIdHp:(id_hp,result) =>{
         try {
-          const query = `
-            SELECT daftar_hp.id_hp, daftar_hp.nama, daftar_hp.tahun, daftar_hp.jenis, data_hp.kode_hp, nilai_hp.harga, nilai_hp.kode_hp, nilai_hp.kelas_hp
-            FROM daftar_hp
-            JOIN data_hp ON data_hp.kode_hp = nilai_hp.kode_hp
-            JOIN nilai_hp ON nilai_hp.id_hp = daftar_hp.id_hp
-            WHERE daftar_hp.id_hp = ?
-          `;
-          sql.query(query, [id_hp], (err, res) => {
-            if (err) {
-              console.log("Error executing query:", err);
-              result(err, null);
-              return;
+            sql.query(`SELECT daftar_hp.id_hp,daftar_hp.nama,daftar_hp.tahun,daftar_hp.jenis,data_hp.kode_hp,nilai_hp.harga,nilai_hp.kode_hp,nilai_hp.kelas_hp
+            FROM daftar_hp,data_hp,nilai_hp
+            WHERE daftar_hp.id_hp=${id_hp} and nilai_hp.id_hp=${id_hp} and nilai_hp.kode_hp=data_hp.kode_hp`,(err,res) =>
+            {
+                result(null,res)
             }
-            result(null, res);
-          });
+            );
         } catch (error) {
-          result(error, null);
+            result(error,null)
         }
-      }
+    // }
+    // getNilaiHpByIdHp: (id_hp, result) => {
+    //     try {
+    //       const query = `
+    //         SELECT daftar_hp.id_hp, daftar_hp.nama, daftar_hp.tahun, daftar_hp.jenis, data_hp.kode_hp, nilai_hp.harga, nilai_hp.kode_hp, nilai_hp.kelas_hp
+    //         FROM daftar_hp
+    //         JOIN data_hp ON data_hp.kode_hp = nilai_hp.kode_hp
+    //         JOIN nilai_hp ON nilai_hp.id_hp = daftar_hp.id_hp
+    //         WHERE daftar_hp.id_hp = ?
+    //       `;
+    //       sql.query(query, [id_hp], (err, res) => {
+    //         if (err) {
+    //           console.log("Error executing query:", err);
+    //           result(err, null);
+    //           return;
+    //         }
+    //         result(null, res);
+    //       });
+    //     } catch (error) {
+    //       result(error, null);
+    //     }
+    //   }
+    }
 }

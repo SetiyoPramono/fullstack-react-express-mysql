@@ -40,8 +40,8 @@ PUT http://localhost:8000/data_hp/12345
 Content-Type: application/json
 
 {
-    "kode_hp": "12we",
-    "merek": "baru"
+    "kode_hp": "12345",
+    "merek": "baru banget"
 }
 
 ###
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:8000/nilai_hp/12122
+GET  http://localhost:8000/nilai_hp/111
 
 ###
 PUT  http://localhost:8000/nilai_hp/12122
@@ -67,6 +67,18 @@ Content-Type: application/json
     "harga": "1000000",
     "nilai_hp": null,
     "kode_hp": "12345",
+    "kelas_hp": "g"
+}
+
+###
+POST  http://localhost:8000/nilai_hp
+Content-Type: application/json
+
+{
+    "id_hp": "111122",
+    "harga": "1000000",
+    "nilai_hp": "ww",
+    "kode_hp": "12w45",
     "kelas_hp": "g"
 }
 

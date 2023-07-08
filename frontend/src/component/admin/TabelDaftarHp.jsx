@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
-import SemuaHpByIdHp from "./SemuaHpByIdHp";
 import { NavLink } from "react-router-dom";
 
 class TabelDaftarHp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      datahp: [],
+      datahp: [],             // Array untuk menyimpan data HP
+      selectedItem: null,     // Item yang dipilih untuk diedit
+      searchId: "",           // Nilai pencarian berdasarkan ID HP
+      searchResult: null      // Hasil pencarian
     };
   }
 
   componentDidMount() {
-    this.getDataHp();
+    this.getDataHp();        // Memanggil fungsi untuk mengambil data HP
   }
 
+  // Mengambil data HP dari API
   getDataHp = () => {
     axios
       .get("http://localhost:8000/daftar_hp")
@@ -26,6 +29,26 @@ class TabelDaftarHp extends Component {
       });
   };
 
+  // Mengubah nilai input pada saat pengguna memasukkan ID HP
+  handleSearchIdChange = (event) => {
+    this.setState({ searchId: event.target.value });
+  };
+
+  // Melakukan pencarian berdasarkan ID HP yang dimasukkan
+  handleSearch = () => {
+    const { searchId } = this.state;
+    axios
+      .get(`http://localhost:8000/daftar_hp/nilai/${searchId}`)
+      .then((response) => {
+        this.setState({ searchResult: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({ searchResult: null });
+      });
+  };
+
+  // Mengubah nilai input saat pengguna mengedit data HP
   handleEditChange = (event) => {
     const { selectedItem } = this.state;
     const { name, value } = event.target;
@@ -33,6 +56,7 @@ class TabelDaftarHp extends Component {
     this.setState({ selectedItem });
   };
 
+  // Menyimpan perubahan data HP yang diedit
   handleSave = () => {
     const { selectedItem } = this.state;
 
@@ -42,42 +66,40 @@ class TabelDaftarHp extends Component {
         selectedItem
       )
       .then((response) => {
-        // Handle successful response
         console.log("Data berhasil diperbarui");
-        // Reset selected item and reload data
         this.setState({ selectedItem: null }, this.getDataHp);
       })
       .catch((error) => {
-        // Handle error
         console.error("Error dalam memperbarui data:", error);
       });
   };
 
+  // Membatalkan proses edit dan menghapus data yang sudah diubah
   handleCancel = () => {
     this.setState({ selectedItem: null });
   };
 
+  // Memilih data HP yang akan diedit
   handleEdit = (item) => {
     this.setState({ selectedItem: item });
   };
 
+  // Menghapus data HP
   handleDelete = (item) => {
     axios
       .delete(`http://localhost:8000/daftar_hp/${item.id_hp}`)
       .then((response) => {
-        // Handle successful response
         console.log("Data berhasil dihapus");
-        // Reload data
         this.getDataHp();
       })
       .catch((error) => {
-        // Handle error
         console.error("Error dalam menghapus data:", error);
       });
   };
 
   render() {
-    const { datahp, selectedItem } = this.state;
+    const { datahp, selectedItem, searchId, searchResult } = this.state;
+    const hpList = searchResult || datahp;
 
     return (
       <>
@@ -86,10 +108,10 @@ class TabelDaftarHp extends Component {
           <NavLink to="/tmbdaftarhp" className="btn btn-primary btn-sm">
             Tambah Daftar
           </NavLink>
-          <SemuaHpByIdHp />
           <div className="">
             {selectedItem ? (
               <div>
+                {/* Tampilan saat melakukan edit */}
                 <input
                   type="text"
                   name="nama"
@@ -122,41 +144,58 @@ class TabelDaftarHp extends Component {
                 </button>
               </div>
             ) : (
-              <table className="table table-sm" style={{ width: "500px" }}>
-                <thead className="">
-                  <tr>
-                    <th>Id HP</th>
-                    <th>Nama</th>
-                    <th>Tahun</th>
-                    <th>Jenis</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {datahp.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{item.id_hp}</td>
-                      <td>{item.nama}</td>
-                      <td>{item.tahun}</td>
-                      <td>{item.jenis}</td>
-                      <td>
-                        <button
-                          className="btn btn-warning btn-sm"
-                          onClick={() => this.handleEdit(item)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => this.handleDelete(item)}
-                        >
-                          Delete
-                        </button>
-                      </td>
+              <>
+                {/* Tampilan saat tidak melakukan edit */}
+                <div className="form-group">
+                  <label htmlFor="searchId">Search by ID HP:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Cari berdasarkan ID HP"
+                    id="searchId"
+                    value={searchId}
+                    onChange={this.handleSearchIdChange}
+                  />
+                </div>
+                <button className="btn btn-primary" onClick={this.handleSearch}>
+                  Search
+                </button>
+                <table className="table table-sm" style={{ width: "500px" }}>
+                  <thead className="">
+                    <tr>
+                      <th>Id HP</th>
+                      <th>Nama</th>
+                      <th>Tahun</th>
+                      <th>Jenis</th>
+                      <th>Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {hpList.map((item, idx) => (
+                      <tr key={idx}>
+                        <td>{item.id_hp}</td>
+                        <td>{item.nama}</td>
+                        <td>{item.tahun}</td>
+                        <td>{item.jenis}</td>
+                        <td>
+                          <button
+                            className="btn btn-warning btn-sm"
+                            onClick={() => this.handleEdit(item)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => this.handleDelete(item)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
             )}
           </div>
         </div>

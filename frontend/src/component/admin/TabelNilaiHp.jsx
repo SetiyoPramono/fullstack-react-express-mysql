@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import SemuaHpByIdHp from "./SemuaHpByIdHp";
 import { NavLink } from "react-router-dom";
 
-class TabelDaftarHp extends Component {
+class TabelNilaiHp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datahp: [],
+      searchId: "",
     };
   }
 
@@ -76,17 +76,53 @@ class TabelDaftarHp extends Component {
       });
   };
 
+  handleSearchChange = (event) => {
+    this.setState({ searchId: event.target.value });
+  };
+
+  handleSearch = () => {
+    const { searchId } = this.state;
+    if (searchId) {
+      axios
+        .get(`http://localhost:8000/nilai_hp/${searchId}`)
+        .then((response) => {
+          this.setState({ datahp: [response.data] });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.setState({ datahp: [] });
+        });
+    } else {
+      this.getDataHp();
+    }
+  };
+
   render() {
-    const { datahp, selectedItem } = this.state;
+    const { datahp, selectedItem, searchId } = this.state;
 
     return (
       <>
         <h1 className="text-center">Nilai HP</h1>
         <div className="container mt-3">
-          <NavLink to="/tmbdaftarhp" className="btn btn-primary btn-sm">
-            Tambah Daftar
+        <NavLink to="/tmbnilaihp" className="btn btn-primary btn-sm">
+            Tambah Nilai
           </NavLink>
-          <SemuaHpByIdHp />
+          <div className="form-group">
+          <label htmlFor="searchId">Search by ID HP:</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Cari berdasarkan ID HP"
+              value={searchId}
+              onChange={this.handleSearchChange}
+            />
+            <button
+              className="btn btn-primary mt-2"
+              onClick={this.handleSearch}
+            >
+              Cari
+            </button>
+          </div>
           <div className="">
             {selectedItem ? (
               <div>
@@ -134,6 +170,7 @@ class TabelDaftarHp extends Component {
                     <th>Id HP</th>
                     <th>Harga</th>
                     <th>Kode HP</th>
+                    <th>Nilai HP</th>
                     <th>Kelas</th>
                     <th>Action</th>
                   </tr>
@@ -144,6 +181,7 @@ class TabelDaftarHp extends Component {
                       <td>{item.id_hp}</td>
                       <td>{item.harga}</td>
                       <td>{item.kode_hp}</td>
+                      <td>{item.nilai_hp}</td>
                       <td>{item.kelas_hp}</td>
                       <td>
                         <button
@@ -171,4 +209,4 @@ class TabelDaftarHp extends Component {
   }
 }
 
-export default TabelDaftarHp;
+export default TabelNilaiHp;
