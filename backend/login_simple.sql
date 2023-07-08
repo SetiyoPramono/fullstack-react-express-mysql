@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jul 2023 pada 17.02
+-- Waktu pembuatan: 08 Jul 2023 pada 14.49
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -39,8 +39,8 @@ CREATE TABLE `daftar_hp` (
 --
 
 INSERT INTO `daftar_hp` (`id_hp`, `nama`, `tahun`, `jenis`) VALUES
-('12qq', 'dia', '2023', 'f'),
-('12we', 'dia', '2023', 'd');
+('111', 'oppo', '2002', 'b'),
+('123', 'qe', '2023', 'oppo');
 
 -- --------------------------------------------------------
 
@@ -58,9 +58,8 @@ CREATE TABLE `data_hp` (
 --
 
 INSERT INTO `data_hp` (`kode_hp`, `merek`) VALUES
-('12345', 'terbaru'),
-('qwer', '223e'),
-('qw23', '3wer');
+('123', 'oppo'),
+('321', 'oppp');
 
 -- --------------------------------------------------------
 
@@ -81,7 +80,8 @@ CREATE TABLE `nilai_hp` (
 --
 
 INSERT INTO `nilai_hp` (`id_hp`, `harga`, `kode_hp`, `kelas_hp`, `nilai_hp`) VALUES
-('11qw', '23232', 'we2', 'a', NULL);
+('111', '20000000', '123', 'a', 'a'),
+('123', '2000', '321', 'b', 'a');
 
 -- --------------------------------------------------------
 
