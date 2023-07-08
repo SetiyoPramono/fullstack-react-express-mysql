@@ -105,7 +105,7 @@ class TabelNilaiHp extends Component {
         <h1 className="text-center">Nilai HP</h1>
         <div className="container mt-3">
         <NavLink to="/tmbnilaihp" className="btn btn-primary btn-sm">
-            Tambah Nilai
+            Tambah Data
           </NavLink>
           <div className="form-group">
           <label htmlFor="searchId">Search by ID HP:</label>
